@@ -1,0 +1,1 @@
+document.getElementById("thing").innerHTML = "THIS is the ZAP+ Extension!";
