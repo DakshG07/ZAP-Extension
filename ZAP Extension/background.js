@@ -35,6 +35,9 @@ chrome.alarms.onAlarm.addListener(function( alarm ) {
     chrome.storage.sync.get(["alarms"], function(result) {
   	console.log('Alarm Zoom link: ' + result.alarms[aN]);
   	chrome.tabs.sendMessage(activeTab.id, {"message": "alarmed", "name": alarm.name, "zoom":result.alarms[aN]});
+  	//Make new alarm
+  	chrome.alarms.create(alarm.name, {delayInMinutes: 720});
+  	console.log("Made new alarm.")
 	});
     console.log("Sent alarm.");
   });
@@ -58,6 +61,7 @@ chrome.extension.onConnect.addListener(function(port) {
            if (msg == "create") {
            		//Send message from popup.js to send message to content.js.
            		alertCJS();
+           		
   			}
       });
  })
